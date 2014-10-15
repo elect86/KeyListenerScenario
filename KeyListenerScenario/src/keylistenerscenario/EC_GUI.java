@@ -5,9 +5,18 @@
  */
 package keylistenerscenario;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
+import javax.swing.AbstractAction;
+import javax.swing.Action;
+import javax.swing.JComponent;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.KeyStroke;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -76,6 +85,8 @@ public class EC_GUI extends javax.swing.JFrame {
 
     private GlViewer glViewer;
     public static EC_GUI main;
+    private boolean oPressed = false;
+    private boolean ctrlPressed = false;
 
     /**
      * Creates new form EC_GUI1
@@ -85,19 +96,109 @@ public class EC_GUI extends javax.swing.JFrame {
         JFrame.setDefaultLookAndFeelDecorated(false);
 //        this.setUndecorated(true);
 
+//        addKeyListener(new KeyListener() {
+//
+//            @Override
+//            public void keyTyped(KeyEvent e) {
+//                System.out.println("typed ");
+////                System.out.println(
+////                        +e.getExtendedKeyCode()
+////                        + " " + e.getID()
+////                        + " " + e.getKeyChar()
+////                        + " " + e.getKeyCode()
+////                        + " " + e.getKeyLocation()
+////                        + " " + e.getModifiers()
+////                        + " " + e.getModifiersEx()
+////                );
+//            }
+//
+//            @Override
+//            public void keyPressed(KeyEvent e) {
+//                System.out.println("pressed");
+////                System.out.println(
+////                        +e.getExtendedKeyCode()
+////                        + " " + e.getID()
+////                        + " " + e.getKeyChar()
+////                        + " " + e.getKeyCode()
+////                        + " " + e.getKeyLocation()
+////                        + " " + e.getModifiers()
+////                        + " " + e.getModifiersEx()
+////                );
+//                switch (e.getKeyCode()) {
+//
+//                    case KeyEvent.VK_CONTROL:
+//                        ctrlPressed = true;
+//                        break;
+//                    case KeyEvent.VK_O:
+//                        oPressed = true;
+//                        break;
+//                }
+//                check();
+//            }
+//
+//            @Override
+//            public void keyReleased(KeyEvent e) {
+//                System.out.println("released");
+//                switch (e.getKeyCode()) {
+//
+//                    case KeyEvent.VK_CONTROL:
+//                        ctrlPressed = false;
+//                        break;
+//                    case KeyEvent.VK_O:
+//                        oPressed = false;
+//                        break;
+//                }
+//            }
+//        });
         initComponents();
-        
+
+//        Action openFileChooserAction = new AbstractAction() {
+//
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                System.out.println("actionPerformed");
+//                openFileChooser();
+//            }
+//        };
+//        KeyStroke keyStroke = KeyStroke.getKeyStroke(KeyEvent.VK_O, KeyEvent.CTRL_MASK);
+//        centerPanel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(keyStroke, "openFileChooser");
+//        centerPanel.getActionMap().put("openFileChooser", openFileChooserAction);
+
         setSize(800, 600);
         setLocation(30, 30);
-        
-        main = this;
-        
-        initGlViewer();
 
-        setVisible(true);
+        main = this;
+
+        initGlViewer();
         
+        setVisible(true);
+
         glViewer.getNewtCanvasAWT().requestFocus();
     }
+
+//    private void check() {
+//
+//        if (oPressed && ctrlPressed) {
+//
+//            openFileChooser();
+//        }
+//    }
+//
+//    private void openFileChooser() {
+//        //            System.out.println(""+SwingUtilities.isEventDispatchThread());
+//        SwingUtilities.invokeLater(new Runnable() {
+//
+//            @Override
+//            public void run() {
+//                System.out.println("fileChooser opens");
+//                JFileChooser fileChooser = new JFileChooser();
+//
+//                if (fileChooser.showOpenDialog(EC_GUI.main) != JFileChooser.APPROVE_OPTION) {
+//                    System.out.println("fileChooser closed");
+//                }
+//            }
+//        });
+//    }
 
     private void initGlViewer() {
         /**
@@ -105,7 +206,17 @@ public class EC_GUI extends javax.swing.JFrame {
          */
         glViewer = new GlViewer();
         glViewer.setup();
+//        System.out.println(""+SwingUtilities.isEventDispatchThread());
         centerPanel.add(glViewer.getNewtCanvasAWT());
+        centerPanel.setFocusable(false);
+//        SwingUtilities.invokeLater(new Runnable() {
+//
+//            @Override
+//            public void run() {
+//                centerPanel.add(glViewer.getNewtCanvasAWT());
+//                centerPanel.setFocusable(false);
+//            }
+//        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -76,7 +76,7 @@ public class InputListener implements KeyListener {
                 
                 @Override
                 public void run() {
-                    
+                    System.out.println("fileChooser opens");
                     JFileChooser fileChooser = new JFileChooser();
                     
                     if (fileChooser.showOpenDialog(EC_GUI.main) != JFileChooser.APPROVE_OPTION) {
