@@ -152,17 +152,17 @@ public class EC_GUI extends javax.swing.JFrame {
 //        });
         initComponents();
 
-//        Action openFileChooserAction = new AbstractAction() {
-//
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                System.out.println("actionPerformed");
-//                openFileChooser();
-//            }
-//        };
-//        KeyStroke keyStroke = KeyStroke.getKeyStroke(KeyEvent.VK_O, KeyEvent.CTRL_MASK);
-//        centerPanel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(keyStroke, "openFileChooser");
-//        centerPanel.getActionMap().put("openFileChooser", openFileChooserAction);
+        Action openFileChooserAction = new AbstractAction() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("actionPerformed");
+                openFileChooser();
+            }
+        };
+        KeyStroke keyStroke = KeyStroke.getKeyStroke(KeyEvent.VK_W, 0);
+        centerPanel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(keyStroke, "openFileChooser");
+        centerPanel.getActionMap().put("openFileChooser", openFileChooserAction);
 
         setSize(800, 600);
         setLocation(30, 30);
@@ -173,32 +173,32 @@ public class EC_GUI extends javax.swing.JFrame {
         
         setVisible(true);
 
-        glViewer.getNewtCanvasAWT().requestFocus();
+//        glViewer.getNewtCanvasAWT().requestFocus();
     }
 
-//    private void check() {
-//
-//        if (oPressed && ctrlPressed) {
-//
-//            openFileChooser();
-//        }
-//    }
-//
-//    private void openFileChooser() {
-//        //            System.out.println(""+SwingUtilities.isEventDispatchThread());
-//        SwingUtilities.invokeLater(new Runnable() {
-//
-//            @Override
-//            public void run() {
-//                System.out.println("fileChooser opens");
-//                JFileChooser fileChooser = new JFileChooser();
-//
-//                if (fileChooser.showOpenDialog(EC_GUI.main) != JFileChooser.APPROVE_OPTION) {
-//                    System.out.println("fileChooser closed");
-//                }
-//            }
-//        });
-//    }
+    private void check() {
+
+        if (oPressed && ctrlPressed) {
+
+            openFileChooser();
+        }
+    }
+
+    private void openFileChooser() {
+        //            System.out.println(""+SwingUtilities.isEventDispatchThread());
+        SwingUtilities.invokeLater(new Runnable() {
+
+            @Override
+            public void run() {
+                System.out.println("fileChooser opens");
+                JFileChooser fileChooser = new JFileChooser();
+
+                if (fileChooser.showOpenDialog(EC_GUI.main) != JFileChooser.APPROVE_OPTION) {
+                    System.out.println("fileChooser closed");
+                }
+            }
+        });
+    }
 
     private void initGlViewer() {
         /**
@@ -207,8 +207,8 @@ public class EC_GUI extends javax.swing.JFrame {
         glViewer = new GlViewer();
         glViewer.setup();
 //        System.out.println(""+SwingUtilities.isEventDispatchThread());
-        centerPanel.add(glViewer.getNewtCanvasAWT());
-        centerPanel.setFocusable(false);
+//        centerPanel.add(glViewer.getNewtCanvasAWT());
+//        centerPanel.setFocusable(false);
 //        SwingUtilities.invokeLater(new Runnable() {
 //
 //            @Override

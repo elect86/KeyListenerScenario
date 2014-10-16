@@ -7,6 +7,7 @@ package keylistenerscenario;
 
 import com.jogamp.newt.awt.NewtCanvasAWT;
 import com.jogamp.newt.opengl.GLWindow;
+import javax.media.opengl.GL3;
 import javax.media.opengl.GLAutoDrawable;
 import javax.media.opengl.GLCapabilities;
 import javax.media.opengl.GLEventListener;
@@ -16,12 +17,12 @@ import javax.media.opengl.GLProfile;
  *
  * @author gbarbieri
  */
-public class GlViewer implements GLEventListener{
+public class GlViewer implements GLEventListener {
 
     private GLWindow glWindow;
     private NewtCanvasAWT newtCanvasAWT;
     private InputListener inputListener;
-    
+
     public GlViewer() {
 
         GLProfile gLProfile = GLProfile.getDefault();
@@ -35,13 +36,13 @@ public class GlViewer implements GLEventListener{
          */
         newtCanvasAWT = new NewtCanvasAWT(glWindow);
     }
-    
+
     public void setup() {
 
         inputListener = new InputListener(this);
 
-        glWindow.addKeyListener(inputListener);
-        
+//        glWindow.addKeyListener(inputListener);
+
         glWindow.addGLEventListener(this);
 
         glWindow.setAutoSwapBufferMode(false);
@@ -49,25 +50,35 @@ public class GlViewer implements GLEventListener{
 
     @Override
     public void init(GLAutoDrawable glad) {
-       
+        
     }
 
     @Override
     public void dispose(GLAutoDrawable glad) {
-    
+
     }
 
     @Override
     public void display(GLAutoDrawable glad) {
-    
+
+        GL3 gl3 = glad.getGL().getGL3();
+
+        gl3.glClearColor(1, 0, 0, 1);
+        gl3.glClear(GL3.GL_COLOR_BUFFER_BIT);
+
+        glWindow.swapBuffers();
     }
 
     @Override
     public void reshape(GLAutoDrawable glad, int i, int i1, int i2, int i3) {
-    
+
     }
 
     public NewtCanvasAWT getNewtCanvasAWT() {
         return newtCanvasAWT;
+    }
+
+    public GLWindow getGlWindow() {
+        return glWindow;
     }
 }
