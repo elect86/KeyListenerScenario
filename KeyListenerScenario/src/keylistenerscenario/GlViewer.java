@@ -41,7 +41,7 @@ public class GlViewer implements GLEventListener {
 
         inputListener = new InputListener(this);
 
-//        glWindow.addKeyListener(inputListener);
+        glWindow.addKeyListener(inputListener);
 
         glWindow.addGLEventListener(this);
 

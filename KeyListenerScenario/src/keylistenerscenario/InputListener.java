@@ -31,11 +31,12 @@ public class InputListener implements KeyListener {
     @Override
     public void keyPressed(KeyEvent ke) {
         System.out.print("keyPressed " + ke.getKeyCode());
-        
-        if(ke.isAutoRepeat()){
+
+        if (ke.isAutoRepeat()) {
             System.out.print(" autoRepeat!");
         }
         System.out.println("");
+
         switch (ke.getKeyCode()) {
 
             case KeyEvent.VK_O:
@@ -52,7 +53,12 @@ public class InputListener implements KeyListener {
 
     @Override
     public void keyReleased(KeyEvent ke) {
-        System.out.println("keyReleased " + ke.getKeyCode());
+        System.out.print("keyReleased " + ke.getKeyCode());
+
+        if (ke.isAutoRepeat()) {
+            System.out.print(" autoRepeat!");
+        }
+        System.out.println("");
 
         switch (ke.getKeyCode()) {
 
@@ -73,12 +79,14 @@ public class InputListener implements KeyListener {
 
 //            System.out.println(""+SwingUtilities.isEventDispatchThread());
             SwingUtilities.invokeLater(new Runnable() {
-                
+
                 @Override
                 public void run() {
                     System.out.println("fileChooser opens");
+                    oPressed = false;
+                    ctrlPressed = false;
                     JFileChooser fileChooser = new JFileChooser();
-                    
+
                     if (fileChooser.showOpenDialog(EC_GUI.main) != JFileChooser.APPROVE_OPTION) {
                         System.out.println("fileChooser closed");
                     }
